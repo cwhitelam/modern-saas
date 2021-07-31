@@ -4,11 +4,7 @@ export function Welcome() {
     <div>
       <code className="p-3 font-mono text-2xl bg-gray-100 rounded-md">Welcome Component</code>
       <div className="bg-red-500 w-48">
-        <Link href="/about">
-          <a>About Us</a>
-          <a>About Us</a>
-          <a>About Us</a>
-        </Link>
+        <Link href="/about"></Link>
       </div>
     </div>
   )
