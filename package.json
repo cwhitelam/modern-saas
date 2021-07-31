@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/server.ts'"
+    "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/server.ts'",
+    "prisma:generate": "prisma generate --schema=./src/plugins/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=./src/plugins/prisma/schema.prisma",
+    "prisma:deploy": "prisma migrate deploy --schema=./src/plugins/prisma/schema.prisma",
+    "prisma:reset": "prisma migrate reset --schema=./src/plugins/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
