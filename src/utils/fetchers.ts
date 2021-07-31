@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-const internalInstance = axios.create({
+const internalInstance: AxiosInstance = axios.create({
   baseURL: process.env.SERVER_URL
 })
 
