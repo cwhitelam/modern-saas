@@ -1,6 +1,7 @@
 import Fastify from 'fastify'
 import next from './plugins/next/'
-import server from './plugins/server/'
+import prisma from './plugins/prisma'
+import server from './plugins/server'
 
 export default async function app() {
   const app = Fastify({ logger: true, pluginTimeout: 20000 })
@@ -10,6 +11,9 @@ export default async function app() {
 
   // Encapsulate backend sever implementation
   app.register(server)
+
+  // Encapsulate orm / db implementation
+  app.register(prisma)
 
   return app
 }
