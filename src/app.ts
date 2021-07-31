@@ -5,7 +5,6 @@ import server from './plugins/server'
 
 export default async function app() {
   const app = Fastify({ logger: true, pluginTimeout: 20000 })
-  console.log(app)
 
   // Encapsulate nextjs SSR implementation
   app.register(next)
