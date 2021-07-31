@@ -6,6 +6,8 @@ export function Welcome() {
       <div className="bg-red-500 w-48">
         <Link href="/about">
           <a>About Us</a>
+          <a>About Us</a>
+          <a>About Us</a>
         </Link>
       </div>
     </div>
