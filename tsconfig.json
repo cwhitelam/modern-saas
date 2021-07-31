@@ -3,17 +3,18 @@
   "compilerOptions": {
     "target": "ES2021",
     "module": "commonjs",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "noEmit": false,
+    "noEmit": true,
     "jsx": "preserve",
     "allowJs": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "next-env.d.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
 }
-
