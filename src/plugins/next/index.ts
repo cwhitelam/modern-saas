@@ -8,7 +8,9 @@ export default function (app: any, opts: any, next: any) {
       noServeAssets: false
     })
     .after((e: FastifyError) => {
-      console.log(e)
+      if (e) {
+        console.log(e)
+      }
       app.next('*')
     })
 
