@@ -1,5 +1,5 @@
 import Fastify from 'fastify'
-import next from './plugins/next/'
+import next from './plugins/next'
 import prisma from './plugins/prisma'
 import server from './plugins/server'
 

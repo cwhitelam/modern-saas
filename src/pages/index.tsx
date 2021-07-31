@@ -1,14 +1,28 @@
-import Welcome from '../components/Welcome'
+import { Welcome } from '../components/Welcome'
+import useSWR from 'swr'
+import { internalFetcher } from '../utils/fetchers'
 
-export async function getServerSideProps() {
-  console.log('INDEX PAGE: THIS IS ONT HE SERVERRRR')
-  return {
-    props: {
-      success: true
-    }
-  }
+interface IndexPageProps {
+  data: { health: string }
 }
 
-export default function IndexPage() {
-  return <Welcome />
+export default function IndexPage(props: IndexPageProps) {
+  const initialData = props.data
+  const { data } = useSWR('/api/health', internalFetcher, { initialData })
+
+  return (
+    <div>
+      {data.health}
+      <Welcome />
+    </div>
+  )
+}
+
+export async function getServerSideProps() {
+  const { data } = await internalFetcher('get', '/api/health')
+  return {
+    props: {
+      data
+    }
+  }
 }
