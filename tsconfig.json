@@ -2,6 +2,7 @@
   "extends": "fastify-tsconfig",
   "compilerOptions": {
     "target": "ES2021",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "commonjs",
     "strict": false,
     "esModuleInterop": true,
