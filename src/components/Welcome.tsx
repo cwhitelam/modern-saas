@@ -1,5 +1,5 @@
 import Link from 'next/link'
-export function Welcome() {
+export default function Welcome() {
   return (
     <div>
       <code className="p-3 font-mono text-2xl bg-gray-100 rounded-md">Welcome Component</code>

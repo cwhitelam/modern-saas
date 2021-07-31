@@ -1,5 +1,5 @@
-import { Welcome } from '../components/Welcome'
 import useSWR from 'swr'
+import Welcome from '../components/Welcome'
 import { internalFetcher } from '../utils/fetchers'
 
 interface IndexPageProps {
