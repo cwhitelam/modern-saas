@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import fastifyNextjs from 'fastify-nextjs'
+import handlers from './server/handlers'
 
 export default async function app() {
   const app = Fastify({ logger: true, pluginTimeout: 20000 })
@@ -10,12 +11,10 @@ export default async function app() {
       noServeAssets: false
     })
     .after(() => {
-      app.next('/')
+      app.next('*')
     })
 
-  app.get('/health', async () => {
-    return { ok: true }
-  })
+  app.register(handlers, { prefix: '/api' })
 
   return app
 }

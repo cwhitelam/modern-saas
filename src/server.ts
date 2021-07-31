@@ -14,7 +14,7 @@ const startServer = async () => {
 
     server.log.info(`🚀 Modern-SaaS is now running on port ${port}`)
   } catch (err) {
-    server.log.error(err)
+    console.log(err)
     process.exit(1)
   }
 }
