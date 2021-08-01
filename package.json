@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/server.ts'",
+    "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register --require tsconfig-paths/register src/server.ts'",
     "start": "ts-node src/server.ts",
     "prisma:generate": "prisma generate --schema=./src/plugins/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=./src/plugins/prisma/schema.prisma",
@@ -39,6 +39,7 @@
     "pretty-quick": "^3.1.1",
     "prisma": "^2.28.0",
     "ts-node": "^10.1.0",
+    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   }
 }

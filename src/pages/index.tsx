@@ -1,5 +1,6 @@
+import Layout from '@components/Layout'
+import Welcome from '@components/Welcome'
 import useSWR from 'swr'
-import Welcome from '../components/Welcome'
 import { internalFetcher } from '../utils/fetchers'
 
 interface IndexPageProps {
@@ -11,10 +12,10 @@ export default function IndexPage(props: IndexPageProps) {
   const { data } = useSWR('/api/health', internalFetcher, { initialData })
 
   return (
-    <div>
+    <Layout container>
       {data.health}
       <Welcome />
-    </div>
+    </Layout>
   )
 }
 
