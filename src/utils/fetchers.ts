@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 
 const internalInstance: AxiosInstance = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? process.env.SERVER_URL : process.env.LOCAL_URL
+  baseURL: process.env.NODE_ENV === 'production' ? process.env.DEPLOYED_URL : process.env.LOCAL_URL
 })
 
 export const internalFetcher = async (method: string, url: string) => {
