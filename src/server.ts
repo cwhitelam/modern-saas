@@ -7,7 +7,7 @@ let server: FastifyInstance
 
 const startServer = async () => {
   try {
-    server = await app()
+    server = await app({ logger: true, pluginTimeout: 20000 })
 
     await server.listen(port)
 

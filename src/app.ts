@@ -1,10 +1,10 @@
-import Fastify from 'fastify'
+import Fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
 import next from './plugins/next'
 import prisma from './plugins/prisma'
 import server from './plugins/server'
 
-export default async function app() {
-  const app = Fastify({ logger: true, pluginTimeout: 20000 })
+export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {
+  const app = Fastify(options)
 
   // Encapsulate nextjs SSR implementation
   app.register(next)
