@@ -1,7 +1,10 @@
 import MSButton from '@components/ui/MSButton'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Nav() {
+  const router = useRouter()
+
   return (
     <div className="flex items-center justify-between px-4 py-4 mt-4">
       <div>
@@ -12,9 +15,7 @@ export default function Nav() {
       <div className="flex items-center space-x-1">
         <MSButton flat="true">Sign in</MSButton>
 
-        <Link href="/signup">
-          <MSButton>Sign up for free</MSButton>
-        </Link>
+        <MSButton onClick={() => router.push(`/signup`)}>Sign up for free</MSButton>
       </div>
     </div>
   )
