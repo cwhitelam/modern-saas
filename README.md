@@ -1,2 +1,2 @@
 # 🚀 Modern SaaS
-![Server tests](https://github.com/trey-m/modern-saas/workflows/Build/badge.svg)
+[![Server Tests](https://github.com/trey-m/modern-saas/actions/workflows/server-tests.yml/badge.svg)](https://github.com/trey-m/modern-saas/actions/workflows/server-tests.yml)
