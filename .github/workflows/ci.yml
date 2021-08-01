@@ -3,7 +3,7 @@ name: Modern SaaS CI
 on: push
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,4 +15,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn dev "🍏 This job's status is ${{ job.status }}."
+      - run: yarn test "🍏 This job's status is ${{ job.status }}."
