@@ -1,7 +1,8 @@
 {
   "extends": "fastify-tsconfig",
   "compilerOptions": {
-    "target": "ES2021",
+    "baseUrl": ".",
+    "target": "es6",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "commonjs",
     "strict": false,
@@ -13,8 +14,11 @@
     "jsx": "preserve",
     "allowJs": true,
     "isolatedModules": true,
-    "moduleResolution": "Node",
-    "resolveJsonModule": true
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "paths": {
+      "@components/*": ["./src/components/*"]
+    }
   },
   "include": ["src/**/*.ts", "next-env.d.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
