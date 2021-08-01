@@ -12,7 +12,9 @@ export default function Nav() {
       <div className="flex items-center space-x-1">
         <MSButton flat="true">Sign in</MSButton>
 
-        <MSButton>Sign up for free</MSButton>
+        <Link href="/signup">
+          <MSButton>Sign up for free</MSButton>
+        </Link>
       </div>
     </div>
   )
