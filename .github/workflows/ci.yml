@@ -3,7 +3,7 @@ name: Modern SaaS CI
 on: push
 
 jobs:
-  test:
+  test-server:
     runs-on: ubuntu-latest
     strategy:
       matrix:
