@@ -14,7 +14,7 @@ export default function IndexPage(props: IndexPageProps) {
   return (
     <div className="mx-auto max-w-screen-lg">
       <Nav />
-      <MSCard> Welcome!! </MSCard>
+      <MSCard> Welcome!!! </MSCard>
     </div>
   )
 }
