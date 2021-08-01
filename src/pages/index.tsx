@@ -1,7 +1,6 @@
 import Layout from '@components/Layout'
-import Welcome from '@components/Welcome'
+import { internalFetcher } from '@utils/fetchers'
 import useSWR from 'swr'
-import { internalFetcher } from '../utils/fetchers'
 
 interface IndexPageProps {
   data: { health: string }
@@ -11,12 +10,7 @@ export default function IndexPage(props: IndexPageProps) {
   const initialData = props.data
   const { data } = useSWR('/api/health', internalFetcher, { initialData })
 
-  return (
-    <Layout container>
-      {data.health}
-      <Welcome />
-    </Layout>
-  )
+  return <Layout container>API Health: {data.health}</Layout>
 }
 
 export async function getServerSideProps() {
