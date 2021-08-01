@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register --require tsconfig-paths/register src/server.ts'",
     "start": "ts-node src/server.ts",
+    "test": "jest",
+    "test:dev": "jest --watchAll",
     "prisma:generate": "prisma generate --schema=./src/plugins/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=./src/plugins/prisma/schema.prisma",
     "prisma:deploy": "prisma migrate deploy --schema=./src/plugins/prisma/schema.prisma",
@@ -21,14 +23,17 @@
     "fastify": "^3.19.1",
     "fastify-nextjs": "^6.0.0",
     "fastify-plugin": "^3.0.0",
+    "jest": "^27.0.6",
     "next": "^11.0.1",
     "nextjs": "^0.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "swr": "^0.5.6",
-    "tailwindcss": "^2.2.7"
+    "tailwindcss": "^2.2.7",
+    "ts-jest": "^27.0.4"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
     "@types/react": "^17.0.14",
     "autoprefixer": "^10.3.1",
