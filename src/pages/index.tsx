@@ -8,9 +8,9 @@ interface IndexPageProps {
 
 export default function IndexPage(props: IndexPageProps) {
   return (
-    <div className="mx-auto max-w-screen-lg">
+    <div>
       <Nav />
-      <div className="mt-8 mx-2 md:mx-0">
+      <div className="mx-2 max-w-screen-lg mt-8 md:mx-auto">
         <MSCard className="w-full md:w-1/2 mx-2 md:mx-auto">
           <h3 className="text-3xl font-bold">Welcome to Modern SaaS</h3>
 
