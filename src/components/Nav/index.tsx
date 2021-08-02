@@ -23,7 +23,9 @@ export default function Nav() {
           </Link>
         </div>
         <div className="flex items-center space-x-1">
-          <MSButton flat="true">Sign in</MSButton>
+          <MSButton onClick={() => router.push(`/signin`)} flat="true">
+            Sign in
+          </MSButton>
 
           <MSButton onClick={() => router.push(`/signup`)}>Sign up for free</MSButton>
         </div>
