@@ -16,10 +16,10 @@ export default function Nav() {
 
   return (
     <div className="border-b border-grey-100">
-      <div className="mx-auto max-w-screen-lg flex  items-center justify-between px-2 py-4 mt-6">
+      <div className="mx-auto max-w-screen-lg flex items-center justify-between px-2 lg:px-0 py-4 mt-6">
         <div>
           <Link href="/">
-            <a className="font-bold text-lg">Modern SaaS {isNotSmall ? 'large' : 'small'} </a>
+            <a className="font-bold text-lg">Modern SaaS</a>
           </Link>
         </div>
         <div className="flex items-center space-x-1">
