@@ -8,9 +8,15 @@ interface IndexPageProps {
 
 export default function IndexPage(props: IndexPageProps) {
   return (
-    <div className="mx-auto max-w-screen-lg">
+    <div>
       <Nav />
-      <MSCard> Welcome!!! This was deployed by github actions</MSCard>
+      <div className="mt-8">
+        <MSCard className="w-1/2 mx-auto">
+          <h3 className="text-3xl font-bold">Welcome to Modern SaaS</h3>
+
+          <p className="text-md mt-4">The starter framework for modern saas projects.</p>
+        </MSCard>
+      </div>
     </div>
   )
 }
