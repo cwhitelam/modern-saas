@@ -7,7 +7,6 @@ export default async function app(options: FastifyServerOptions): Promise<Fastif
   const app = Fastify(options)
 
   // Encapsulate nextjs SSR implementation
-  // Encapsulate nextjs SSR implementation
   app.register(next)
 
   // Encapsulate backend sever implementation
