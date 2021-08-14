@@ -19,6 +19,7 @@
     "allowJs": true,
     "isolatedModules": true,
     "moduleResolution": "node",
+    "noUnusedLocals": false,
     "resolveJsonModule": true,
     "paths": {
       "@components/*": [
