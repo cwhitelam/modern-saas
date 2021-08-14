@@ -1,3 +1,3 @@
-import crypto from 'crypto'
+import { randomBytes } from 'crypto'
 
-export const randomId = crypto.randomBytes(16).toString('hex')
+export const randomId = randomBytes(16).toString('hex')
