@@ -14,7 +14,7 @@ export const signup = {
     required: ['email', 'name', 'password']
   },
   response: {
-    200: {
+    201: {
       description: 'success',
       type: 'object',
       properties: {
@@ -42,9 +42,8 @@ export const signin = {
       description: 'success',
       type: 'object',
       properties: {
-        uuid: { type: 'string' },
-        email: { type: 'string' },
-        name: { type: 'string' }
+        accessToken: { type: 'string' },
+        refreshToken: { type: 'string' }
       }
     }
   }

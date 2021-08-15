@@ -2,8 +2,7 @@ import { FastifyInstance } from 'fastify'
 
 export default function (app: FastifyInstance, opts: any, next: any) {
   app.get('/', async (request: any, reply: any) => {
-    const getUser = await app.prisma.user.count()
-    reply.send({ userCount: getUser })
+    reply.send({ userCount: 0 })
   })
 
   app.post('/', (request: any, reply: any) => {

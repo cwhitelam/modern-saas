@@ -16,7 +16,9 @@
     "prisma:migrate": "prisma migrate dev --schema=./src/plugins/prisma/schema.prisma",
     "prisma:deploy": "prisma migrate deploy --schema=./src/plugins/prisma/schema.prisma",
     "prisma:reset": "prisma migrate reset --schema=./src/plugins/prisma/schema.prisma",
+    "prisma:pull": "prisma db pull --schema=./src/plugins/prisma/schema.prisma",
     "prisma:introspect": "prisma introspect --schema=./src/plugins/prisma/schema.prisma",
+    "prisma:format": "prisma format --schema=./src/plugins/prisma/schema.prisma",
     "postinstall": "next build && yarn prisma:generate"
   },
   "keywords": [],
@@ -32,6 +34,8 @@
     "fastify-plugin": "^3.0.0",
     "fastify-sensible": "^3.1.1",
     "fastify-static": "^4.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "next": "^11.0.1",
     "nextjs": "^0.0.3",
     "react": "^17.0.2",
@@ -42,6 +46,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.4",
+    "@types/lodash": "^4.14.172",
     "@types/node": "^16.3.1",
     "@types/react": "^17.0.14",
     "autoprefixer": "^10.3.1",

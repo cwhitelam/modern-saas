@@ -12,7 +12,7 @@ export default function (app: any, opts: any, next: any) {
 
   app.setErrorHandler((err: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
     const customErr = {
-      errorId: randomId,
+      errorId: randomId(16),
       statusCode: err.statusCode || 500,
       error: err.name || 'InternalServerError',
       message: err.message ? err.message : 'Unexpected error'

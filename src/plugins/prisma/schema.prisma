@@ -14,27 +14,39 @@ model User {
   email     String      @unique
   name      String
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime? 
-  User_Role User_Role[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  deletedAt DateTime?
+  UserToken UserToken[]
+  UserRole  UserRole[]
 }
 
 model Role {
-  id        Int         @id @default(autoincrement())
-  uuid      String      @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  role      String      @unique
-  User_Role User_Role[]
+  id       Int        @id @default(autoincrement())
+  uuid     String     @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  role     String     @unique
+  UserRole UserRole[]
 }
 
-model User_Role {
-  id     Int    @id @default(autoincrement())
-  uuid   String @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId Int
-  roleId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime? 
-  user   User   @relation(fields: [userId], references: [id])
-  role   Role   @relation(fields: [roleId], references: [id])
+model UserRole {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    Int
+  roleId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  role      Role      @relation(fields: [roleId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model UserToken {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  token     String
+  userId    Int       @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id])
 }
