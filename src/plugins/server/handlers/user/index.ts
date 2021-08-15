@@ -1,6 +1,6 @@
-import { FastifyInstance } from 'fastify'
+import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 
-export default function (app: FastifyInstance, opts: any, next: any) {
+export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   app.get('/', async (request: any, reply: any) => {
     reply.send({ userCount: 0 })
   })

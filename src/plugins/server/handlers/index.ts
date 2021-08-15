@@ -2,10 +2,10 @@ import health from './health'
 import user from './user'
 import auth from './auth'
 import { randomId } from '../utils'
-import { FastifyError, FastifyRequest } from 'fastify'
+import { FastifyError, FastifyInstance, FastifyPluginOptions, FastifyRequest } from 'fastify'
 import { FastifyReply } from 'fastify/types/reply'
 
-export default function (app: any, opts: any, next: any) {
+export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   app.register(health, { prefix: '/health' })
   app.register(user, { prefix: '/user' })
   app.register(auth, { prefix: '/auth' })

@@ -1,8 +1,8 @@
-import { FastifyInstance } from 'fastify'
+import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import AuthService from '../../services/auth'
 import { signup, signin } from './schema'
 
-export default function (app: FastifyInstance, opts: any, next: any) {
+export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   const authService = new AuthService(app)
 
   app.route({
