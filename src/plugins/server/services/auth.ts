@@ -4,7 +4,6 @@ import { PrismaErrorCodes } from '../../prisma/utils'
 import _ from 'lodash'
 import jwt from 'jsonwebtoken'
 import { randomId } from '../utils'
-import { User } from '@prisma/client'
 
 export default class AuthService {
   _app: FastifyInstance
@@ -64,7 +63,7 @@ export default class AuthService {
     return { accessToken, refreshToken }
   }
 
-  private async generateAndStoreRefreshToken(user: User) {
+  private async generateAndStoreRefreshToken(user) {
     const token = randomId(32)
 
     await this._app.prisma.userToken.upsert({
