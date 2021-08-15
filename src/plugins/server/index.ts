@@ -6,7 +6,7 @@ export default function (app: FastifyInstance, opts: any, next: any) {
 
   app.register(require('fastify-swagger'), {
     routePrefix: '/api/docs',
-    exposeRoute: true,
+    exposeRoute: process.env.NODE_ENV !== 'production',
     swagger: {
       info: {
         title: 'Modern SaaS'
@@ -18,10 +18,7 @@ export default function (app: FastifyInstance, opts: any, next: any) {
 
   app.ready((err) => {
     if (err) throw err
-
-    if (process.env.NODE_ENV !== 'production') {
-      app.swagger()
-    }
+    app.swagger()
   })
 
   next()
