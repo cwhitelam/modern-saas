@@ -1,6 +1,6 @@
 export const signup = {
   description: 'auth/signup',
-  tags: ['auth', 'signup'],
+  tags: ['auth'],
   body: {
     type: 'object',
     properties: {
@@ -28,7 +28,7 @@ export const signup = {
 
 export const signin = {
   description: 'auth/signin',
-  tags: ['auth', 'signin'],
+  tags: ['auth'],
   body: {
     type: 'object',
     properties: {
