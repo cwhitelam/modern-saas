@@ -1,4 +1,5 @@
 import Fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
+import { HttpErrorReplys } from 'fastify-sensible/lib/httpError'
 import { HttpErrors } from 'fastify-sensible/lib/httpError'
 import { OpenAPIV3 } from 'openapi-types'
 import next from './plugins/next'
@@ -15,6 +16,10 @@ declare module 'fastify' {
     }
     httpErrors: HttpErrors
   }
+  interface FastifyRequest {
+    user: any
+  }
+  interface FastifyReply extends HttpErrorReplys {}
 }
 
 export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {

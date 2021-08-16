@@ -11,6 +11,16 @@ export default class AuthService {
     this._app = app
   }
 
+  public async profile(userId) {
+    const profile = await this._app.prisma.user.findFirst({
+      where: {
+        id: userId
+      }
+    })
+
+    return profile
+  }
+
   public async signup(email: string, name: string, password: string) {
     try {
       const createUser = await this._app.prisma.user.create({
@@ -51,16 +61,45 @@ export default class AuthService {
       throw this._app.httpErrors.badRequest('Email or Password wrong. Please try again.')
     }
 
-    const accessToken = jwt.sign(
-      _.pick(user, ['uuid', 'UserRole']),
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: '1hr'
-      }
-    )
+    const accessToken = await this.generateAccessToken(user)
     const refreshToken = await this.generateAndStoreRefreshToken(user)
 
     return { accessToken, refreshToken }
+  }
+
+  public async token(refreshToken: string) {
+    const token = await this._app.prisma.userToken.findFirst({
+      where: { token: refreshToken }
+    })
+
+    if (!token) {
+      throw this._app.httpErrors.unauthorized(
+        'The provided refresh token is invalid, expired, or revoked.'
+      )
+    }
+
+    const checkToken = await bcrypt.compare(token.token, refreshToken)
+
+    const user = await this._app.prisma.user.findFirst({
+      where: { id: token.userId },
+      include: {
+        UserRole: {
+          select: {
+            role: true
+          }
+        }
+      }
+    })
+
+    return {
+      accessToken: this.generateAccessToken(user)
+    }
+  }
+
+  private async generateAccessToken(user) {
+    return jwt.sign(_.pick(user, ['uuid', 'UserRole']), process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '1hr'
+    })
   }
 
   private async generateAndStoreRefreshToken(user) {

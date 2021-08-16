@@ -48,3 +48,25 @@ export const signin = {
     }
   }
 }
+
+export const token = {
+  description: 'auth/token',
+  tags: ['auth'],
+  body: {
+    type: 'object',
+    properties: {
+      refreshToken: { type: 'string' }
+    },
+    required: ['email', 'password']
+  },
+  response: {
+    200: {
+      description: 'success',
+      type: 'object',
+      properties: {
+        accessToken: { type: 'string' },
+        refreshToken: { type: 'string' }
+      }
+    }
+  }
+}

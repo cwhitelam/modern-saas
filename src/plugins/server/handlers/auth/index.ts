@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import AuthService from '../../services/auth'
-import { signup, signin } from './schema'
+import { authGuard, roleGuard } from '../../utils/guards'
+import { signup, signin, token } from './schema'
 
 export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   const authService = new AuthService(app)
@@ -26,6 +27,29 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
       const signin = await authService.signin(email, password)
 
       reply.send(signin)
+    }
+  })
+
+  app.route({
+    method: 'POST',
+    schema: token,
+    url: '/token',
+    handler: async (request: any, reply: any) => {
+      const { refreshToken } = request.body
+      const token = await authService.token(refreshToken)
+
+      reply.send(token)
+    }
+  })
+
+  app.route({
+    method: 'GET',
+    url: '/profile',
+    preHandler: [authGuard, roleGuard('ADMIN')],
+    handler: async (request: any, reply: any) => {
+      const profile = await authService.profile(request.user.id)
+
+      reply.send(profile)
     }
   })
 
