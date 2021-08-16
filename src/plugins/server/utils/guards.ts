@@ -5,12 +5,13 @@ import jwt from 'jsonwebtoken'
 export const roleGuard = (role: string) => {
   return function (request: FastifyRequest, reply: FastifyReply, next: () => void): void {
     let hasPermission = false
+    console.log(request.user)
 
-    if (request.user.UserRole.length < 1) {
+    if (request.user.roles.length < 1) {
       reply.forbidden('Missing required role')
     }
 
-    request.user.UserRole.forEach(({ role: { role } }) => {
+    request.user.roles.forEach((role) => {
       if (role.toUpperCase() === role) {
         return (hasPermission = true)
       }

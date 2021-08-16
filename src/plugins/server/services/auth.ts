@@ -61,7 +61,10 @@ export default class AuthService {
       throw this._app.httpErrors.badRequest('Email or Password wrong. Please try again.')
     }
 
-    const accessToken = await this.generateAccessToken(user)
+    const userTokenData = this.prepareUserForToken(user)
+
+    console.log(userTokenData)
+    const accessToken = await this.generateAccessToken(userTokenData)
     const refreshToken = await this.generateAndStoreRefreshToken(user)
 
     return { accessToken, refreshToken }
@@ -96,8 +99,16 @@ export default class AuthService {
     }
   }
 
+  private prepareUserForToken(user) {
+    const roles = user.UserRole.map((role) => role.role.role)
+    return {
+      userId: user.uuid,
+      roles
+    }
+  }
+
   private async generateAccessToken(user) {
-    return jwt.sign(_.pick(user, ['uuid', 'UserRole']), process.env.ACCESS_TOKEN_SECRET, {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '1hr'
     })
   }

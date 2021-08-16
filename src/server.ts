@@ -20,5 +20,3 @@ const startServer = async () => {
 }
 
 startServer()
-
-//export const viteNodeApp = app({ logger: true, pluginTimeout: 20000 })
