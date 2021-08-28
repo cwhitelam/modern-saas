@@ -56,8 +56,7 @@ export const token = {
     type: 'object',
     properties: {
       refreshToken: { type: 'string' }
-    },
-    required: ['email', 'password']
+    }
   },
   response: {
     200: {

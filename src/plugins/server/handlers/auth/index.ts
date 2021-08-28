@@ -26,7 +26,18 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
       const { email, password } = request.body
       const signin = await authService.signin(email, password)
 
-      reply.send(signin)
+      reply
+        .setCookie('accessToken', signin.accessToken, {
+          secure: false,
+          httpOnly: true,
+          path: '/'
+        })
+        .setCookie('refreshToken', signin.refreshToken, {
+          secure: false,
+          httpOnly: true,
+          path: '/'
+        })
+        .send(signin)
     }
   })
 
@@ -34,11 +45,18 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
     method: 'POST',
     schema: token,
     url: '/token',
+    preHandler: [authGuard],
     handler: async (request: any, reply: any) => {
       const { refreshToken } = request.body
       const token = await authService.token(refreshToken)
 
-      reply.send(token)
+      reply
+        .setCookie('accessToken', token.accessToken, {
+          secure: false,
+          httpOnly: true,
+          path: '/'
+        })
+        .send(token)
     }
   })
 

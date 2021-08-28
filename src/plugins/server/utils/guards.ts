@@ -26,13 +26,16 @@ export const roleGuard = (role: string) => {
 
 export const authGuard = (request: FastifyRequest, reply: FastifyReply, next: () => void) => {
   try {
-    const accessToken = request.headers.authorization?.split(' ')[1]
+    console.log('******************')
+    console.log(request.cookies)
+    console.log('******************')
+    const accessToken = request.cookies?.accessToken
 
     if (!accessToken) {
       throw Error('No token')
     }
 
-    const validToken = verifyToken(accessToken, reply)
+    const validToken = verifyToken(accessToken, request, reply, next)
 
     if (validToken) {
       const user = jwt.decode(accessToken)
@@ -46,11 +49,18 @@ export const authGuard = (request: FastifyRequest, reply: FastifyReply, next: ()
   }
 }
 
-const verifyToken = (accessToken: string, reply: FastifyReply) => {
+const verifyToken = (
+  accessToken: string,
+  request: FastifyRequest,
+  reply: FastifyReply,
+  next: () => void
+) => {
   try {
     const validToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
     return validToken
   } catch (err) {
+    reply.clearCookie('accessToken')
+    reply.clearCookie('refreshToken')
     reply.unauthorized('Token expired')
   }
 }

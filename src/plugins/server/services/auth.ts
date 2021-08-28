@@ -109,7 +109,7 @@ export default class AuthService {
 
   private async generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '1hr'
+      expiresIn: 60 * 5 // 5mins
     })
   }
 

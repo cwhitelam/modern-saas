@@ -1,7 +1,12 @@
+import type { AppProps } from 'next/app'
 import 'tailwindcss/tailwind.css'
+import { GeistProvider, CssBaseline } from '@geist-ui/react'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <GeistProvider>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </GeistProvider>
+  )
 }
-
-export default MyApp

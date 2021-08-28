@@ -1,25 +1,51 @@
-import MSButton from '@components/ui/MSButton'
+import { Button } from '@geist-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Key } from '@geist-ui/react-icons'
+import { signOut, useSession } from 'next-auth/client'
+import { useEffect } from 'react'
 
 export default function Nav() {
+  const [session, loading] = useSession()
   const router = useRouter()
+
+  useEffect(() => {
+    console.log(session)
+  }, [session])
 
   return (
     <div className="border-b border-grey-100">
       <div className="mx-auto max-w-screen-lg flex items-center justify-between px-2 lg:px-0 py-4 mt-6">
         <div>
-          <Link href="/">
-            <a className="font-bold text-lg">Modern SaaS</a>
-          </Link>
+          <Key className="hover:cursor-pointer" onClick={() => router.push(`/`)} />
         </div>
-        <div className="flex items-center space-x-1">
-          <MSButton onClick={() => router.push(`/signin`)} flat="true">
-            Sign in
-          </MSButton>
+        {!session && (
+          <div className="flex items-center space-x-1">
+            <Button onClick={() => router.push(`/api/auth/signin`)} type="abort" auto>
+              Sign in
+            </Button>
+            <Button onClick={() => router.push(`/signup`)} auto shadow type="secondary">
+              Sign up for free
+            </Button>
+          </div>
+        )}
 
-          <MSButton onClick={() => router.push(`/signup`)}>Sign up for free</MSButton>
-        </div>
+        {session && (
+          <div className="flex items-center justify-between ">
+            <Button
+              onClick={(e) => {
+                e.preventDefault()
+                signOut({ callbackUrl: 'http://localhost:3000' })
+              }}
+              auto
+              shadow
+              type="secondary"
+            >
+              Sign out
+            </Button>
+            <span>Signed in</span>
+          </div>
+        )}
       </div>
     </div>
   )

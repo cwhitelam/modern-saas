@@ -1,31 +1,32 @@
 import Nav from '@components/Nav'
-import MSCard from '@components/ui/MSCard'
-import { internalFetcher } from '@utils/fetchers'
+import { getSession, useSession } from 'next-auth/client'
 
-interface IndexPageProps {
-  data: { health: string }
-}
+export default function IndexPage(props) {
+  const [session, loading] = useSession()
 
-export default function IndexPage(props: IndexPageProps) {
-  return (
-    <div>
-      <Nav />
-      <div className="mt-6 max-w-screen-lg mx-auto w-full">
-        <MSCard>
-          <h3 className="text-3xl font-bold">Welcome to Modern SaaS!!</h3>
-
-          <p className="mt-4 text-md">The starter framework for modern saas projects.</p>
-        </MSCard>
+  if (!session) {
+    return (
+      <div>
+        <Nav />
       </div>
-    </div>
-  )
+    )
+  }
 }
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  console.log('SESSION oN INDEX')
+  console.log(session)
 
-export async function getServerSideProps() {
-  const { data } = await internalFetcher('get', '/api/health')
-  return {
-    props: {
-      data
+  if (session) {
+    return {
+      redirect: {
+        destination: '/admin',
+        permanent: false
+      }
     }
+  }
+
+  return {
+    props: { session }
   }
 }

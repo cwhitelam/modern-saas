@@ -9,7 +9,6 @@ import server from './plugins/server'
 declare module 'fastify' {
   interface FastifyInstance {
     swagger: (opts?: { yaml?: boolean }) => OpenAPIV3.Document
-
     swaggerCSP: {
       script: string[]
       style: string[]

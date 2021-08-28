@@ -1,7 +1,8 @@
-import { FastifyError } from 'fastify'
+import { FastifyError, FastifyInstance } from 'fastify'
 import fastifyNextjs from 'fastify-nextjs'
 
-export default function (app: any, opts: any, next: any) {
+export default function (app: FastifyInstance, opts: any, next: () => void) {
+  app.addContentTypeParser('application/x-www-form-urlencoded', async (_, payload) => payload)
   app
     .register(fastifyNextjs, {
       logLevel: 'debug',
@@ -11,8 +12,8 @@ export default function (app: any, opts: any, next: any) {
       if (e) {
         console.log(e)
       }
-      app.next('*')
+      app.next('*', { method: 'GET', schema: {} })
+      app.next('/api/auth/signin/google', { method: 'POST', schema: {} })
     })
-
   next()
 }
