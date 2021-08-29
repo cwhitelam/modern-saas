@@ -35,7 +35,7 @@ jobs:
           HD_ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
           HD_NEXTAUTH_URL: ${{secrets.NEXTAUTH_URL}}
           HD_GOOGLE_ID: ${{secrets.GOOGLE_ID}}
-          HD_SECRET_ID: ${{secrets.GOOGLE_SECRET}}
+          HD_GOOGLE_SECRET: ${{secrets.GOOGLE_SECRET}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
