@@ -5,6 +5,10 @@ import { Key } from '@geist-ui/react-icons'
 import { signOut, useSession } from 'next-auth/client'
 import { useEffect } from 'react'
 
+const CALLBACK_URL = process.env.production
+  ? 'https://modern-saas-dev.herokuapp.com'
+  : 'http://localhost:3000'
+
 export default function Nav() {
   const [session, loading] = useSession()
   const router = useRouter()
@@ -44,7 +48,7 @@ export default function Nav() {
             <Button
               onClick={(e) => {
                 e.preventDefault()
-                signOut({ callbackUrl: 'http://localhost:3000' })
+                signOut({ callbackUrl: CALLBACK_URL })
               }}
               auto
               shadow
