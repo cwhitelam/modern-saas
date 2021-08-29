@@ -1,7 +1,10 @@
 import axios, { AxiosInstance } from 'axios'
 
+const SERVICE_URL =
+  process.env.NODE_ENV === 'production' ? process.env.DEPLOYED_URL : process.env.LOCAL_URL
+
 const internalInstance: AxiosInstance = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? process.env.DEPLOYED_URL : process.env.LOCAL_URL,
+  baseURL: SERVICE_URL,
   withCredentials: true
 })
 
@@ -18,10 +21,11 @@ export const internalFetcher = async (method: string, url: string, body?: any, c
   try {
     if (method == 'get' || method == 'delete') {
       console.log(config)
-      return await internalInstance[method](url, config)
+      return await internalInstance[method](SERVICE_URL + url, config)
     }
-    return await internalInstance[method](url, body, config)
+    return await internalInstance[method](SERVICE_URL + url, body, config)
   } catch (err) {
+    console.log(err)
     const error = err.response.data
     throw error
   }

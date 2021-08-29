@@ -13,7 +13,10 @@ export default function (app: FastifyInstance, opts: any, next: () => void) {
         console.log(e)
       }
       app.next('*', { method: 'GET', schema: {} })
+      // Whitelist POST routes from next API endpoints
+      // This is a specific configuration for Fastify
       app.next('/api/auth/signin/google', { method: 'POST', schema: {} })
+      app.next('/api/auth/signout', { method: 'POST', schema: {} })
     })
   next()
 }
