@@ -37,6 +37,12 @@ export default NextAuth({
       return true
     },
     async session(session, user) {
+      console.log('*************SESSION************')
+      console.log(session)
+      console.log('*************END SESSION************')
+      console.log('*************USER************')
+      console.log(user)
+      console.log('*************END USER************')
       session.user.roles = ['testrole1', 'testrole2']
       return session
     },
