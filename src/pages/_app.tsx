@@ -5,7 +5,7 @@ import { Provider as NextAuthProvider } from 'next-auth/client'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <NextAuthProvider session={pageProps.session}>
+    <NextAuthProvider options={{ clientMaxAge: 10, keepAlive: 5 }} session={pageProps.session}>
       <GeistProvider>
         <CssBaseline />
         <Component {...pageProps} />

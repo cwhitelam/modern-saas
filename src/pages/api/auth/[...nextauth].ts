@@ -5,10 +5,12 @@ import Adapters from 'next-auth/adapters'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 declare module 'next-auth' {
+  interface User {
+    roles: string[]
+  }
+
   interface Session {
-    user: {
-      roles: string[]
-    }
+    user: User
   }
 }
 
@@ -24,9 +26,6 @@ export default NextAuth({
     // ...add more providers here
   ],
   adapter: PrismaAdapter(prisma),
-  jwt: {
-    secret: 'test'
-  },
   debug: true,
   secret: 'secret',
   callbacks: {
@@ -34,16 +33,18 @@ export default NextAuth({
       return url.startsWith(baseUrl) ? url : baseUrl
     },
     async signIn(user, account, profile) {
+      console.log('THIS IS FROM THE SIGNIN HOOK')
+      console.log(user)
+      console.log(account)
+      console.log(profile)
+      console.log('ENDTHIS IS FROM THE SIGNIN HOOK')
       return true
     },
     async session(session, user) {
-      console.log('*************SESSION************')
+      console.log('LOGGING SESSSSSIONNNN')
       console.log(session)
-      console.log('*************END SESSION************')
-      console.log('*************USER************')
-      console.log(user)
-      console.log('*************END USER************')
-      session.user.roles = ['testrole1', 'testrole2']
+      console.log('END LOGGING SESSSSSIONNNN')
+      session.user.roles = ['ADMIN']
       return session
     },
     async jwt(token, user, account, profile, isNewUser) {

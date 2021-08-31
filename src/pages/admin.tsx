@@ -1,46 +1,41 @@
 import Nav from '@components/Nav'
-import { Card, Avatar, Table, Popover, Divider, Drawer } from '@geist-ui/react'
+import { Card, Avatar, Table, Popover, Divider, Drawer, Button } from '@geist-ui/react'
 import { internalFetcher } from '@utils/fetchers'
 import { formatDistance } from 'date-fns'
-import { getSession } from 'next-auth/client'
+import { getSession, signOut } from 'next-auth/client'
 import { ChevronDown } from '@geist-ui/react-icons'
 import { useState } from 'react'
+import { CALLBACK_URL } from '../utils/constants'
+import { useRouter } from 'next/router'
 
 export default function Admin({ users, session }) {
-  const [state, setState] = useState(false)
+  const router = useRouter()
   return (
     <div>
       <div className="flex">
-        <Drawer visible={state} onClose={() => setState(false)} placement="left">
-          <Drawer.Title>Drawer</Drawer.Title>
-          <Drawer.Subtitle>This is a drawer</Drawer.Subtitle>
-          <Drawer.Content>
-            <p>Some content contained within the drawer.</p>
-          </Drawer.Content>
-        </Drawer>
-        <div className="items-center min-w-24 min-h-screen antialiased bg-gray-400 shadow hidden md:flex">
-          SIDEBAR
-        </div>
         <div className="flex-grow">
-          <div>
-            <span onClick={() => setState(!state)}>Open</span>
-          </div>
           <div className="flex items-center justify-end p-4 border-b border-gray-200">
             <Popover
               hideArrow={true}
-              paddingTop="0"
-              paddingBottom="0"
               placement="bottomEnd"
-              offset={5}
-              marginRight={4}
-              width={10}
+              width="10"
               content={() => {
                 return (
-                  <Card shadow paddingLeft={0} className="text-sm" paddingRight={0}>
+                  <div>
                     <div className="">Settings</div>
+                    <a onClick={() => router.push('/')}>Home</a>
                     <Divider />
-                    <div className="">Sign out</div>
-                  </Card>
+                    <div className="w-full">
+                      <a
+                        onClick={(e) => {
+                          e.preventDefault()
+                          signOut({ callbackUrl: CALLBACK_URL })
+                        }}
+                      >
+                        Sign out
+                      </a>
+                    </div>
+                  </div>
                 )
               }}
             >
