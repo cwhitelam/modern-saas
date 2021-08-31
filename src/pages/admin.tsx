@@ -1,4 +1,3 @@
-import Nav from '@components/Nav'
 import { Card, Avatar, Table, Popover, Divider, Drawer, Button } from '@geist-ui/react'
 import { internalFetcher } from '@utils/fetchers'
 import { formatDistance } from 'date-fns'
