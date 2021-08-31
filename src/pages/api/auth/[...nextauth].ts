@@ -33,17 +33,10 @@ export default NextAuth({
       return url.startsWith(baseUrl) ? url : baseUrl
     },
     async signIn(user, account, profile) {
-      console.log('THIS IS FROM THE SIGNIN HOOK')
-      console.log(user)
-      console.log(account)
-      console.log(profile)
-      console.log('ENDTHIS IS FROM THE SIGNIN HOOK')
       return true
     },
     async session(session, user) {
-      console.log('LOGGING SESSSSSIONNNN')
-      console.log(session)
-      console.log('END LOGGING SESSSSSIONNNN')
+      // Update to fetch roles here or in signIn hook
       session.user.roles = ['ADMIN']
       return session
     },
