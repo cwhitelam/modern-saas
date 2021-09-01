@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import { FastifyCookieOptions } from 'fastify-cookie'
 import handlers from './handlers'
+import { isProduction } from './utils'
 
 export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   app.register(require('fastify-sensible'))
@@ -9,7 +10,7 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
 
   app.register(require('fastify-swagger'), {
     routePrefix: '/api/docs',
-    exposeRoute: process.env.NODE_ENV !== 'production',
+    exposeRoute: isProduction ? false : true,
     swagger: {
       info: {
         title: 'Modern SaaS'

@@ -17,17 +17,15 @@ declare module 'next-auth' {
 const prisma = new PrismaClient()
 
 export default NextAuth({
-  // Configure one or more authentication providers
   providers: [
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
     })
-    // ...add more providers here
   ],
   adapter: PrismaAdapter(prisma),
-  debug: true,
-  secret: 'secret',
+  debug: process.env.NODE_ENV === 'production' ? false : true,
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     async redirect(url, baseUrl) {
       return url.startsWith(baseUrl) ? url : baseUrl
