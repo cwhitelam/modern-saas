@@ -6,7 +6,7 @@ import { Provider as NextAuthProvider } from 'next-auth/client'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextAuthProvider
-      // Every 5 mins grab a new session
+      // Every 15 mins ping server for active session
       options={{ keepAlive: 60 * 15 }}
       session={pageProps.session}
     >
