@@ -3,10 +3,12 @@ import { getSession, signOut, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Zap } from '@geist-ui/react-icons'
 import { CALLBACK_URL, USER_ROLES, ADMIN_PAGE } from '@utils/constants'
+import { useSocket } from '../hooks/socket'
 
 export default function IndexPage(props) {
   const router = useRouter()
   const [session, loading] = useSession()
+  const socket = useSocket()
 
   return (
     <div>
@@ -58,3 +60,4 @@ export default function IndexPage(props) {
     </div>
   )
 }
+

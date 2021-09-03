@@ -5,6 +5,7 @@ import { OpenAPIV3 } from 'openapi-types'
 import next from './plugins/next'
 import prisma from './plugins/prisma'
 import server from './plugins/server'
+import socket from './plugins/socket'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -26,6 +27,9 @@ export default async function app(options: FastifyServerOptions): Promise<Fastif
 
   // Encapsulate nextjs SSR implementation
   app.register(next)
+
+  // Encapsulate websocket events
+  app.register(socket)
 
   // Encapsulate backend sever implementation
   app.register(server)
