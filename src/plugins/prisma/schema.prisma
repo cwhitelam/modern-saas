@@ -57,9 +57,3 @@ model VerificationRequest {
 
   @@unique([identifier, token])
 }
-
-model UserRoles {
-  role String
-
-}
-
