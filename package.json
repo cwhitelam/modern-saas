@@ -9,7 +9,7 @@
     "yarn": "1.22.11"
   },
   "scripts": {
-    "vite-dev": "vite-node",
+    "vite-dev": "vite",
     "dev": "nodemon --inspect --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register --require tsconfig-paths/register src/server.ts'",
     "start": "ts-node --transpile-only src/server.ts",
     "prisma:generate": "prisma generate --schema=./src/plugins/prisma/schema.prisma",
@@ -66,6 +66,8 @@
     "prisma": "^2.28.0",
     "ts-node": "^10.1.0",
     "tsconfig-paths": "^3.10.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "vite": "^2.5.3",
+    "vite-plugin-node": "^0.0.14"
   }
 }

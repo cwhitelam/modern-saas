@@ -27,14 +27,11 @@ export default NextAuth({
   debug: process.env.NODE_ENV === 'production' ? false : true,
   secret: process.env.AUTH_SECRET,
   callbacks: {
-    async redirect(url, baseUrl) {
-      return url.startsWith(baseUrl) ? url : baseUrl
-    },
     async signIn(user, account, profile) {
+      // fetch user roles
       return true
     },
     async session(session, user) {
-      // Update to fetch roles here or in signIn hook
       session.user.roles = ['ADMIN']
       return session
     },

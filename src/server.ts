@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import app from './app'
+import ModernSaas from './app'
 
 const port = process.env.PORT || 3000
 const host = '0.0.0.0'
@@ -8,7 +8,7 @@ let server: FastifyInstance
 
 const startServer = async () => {
   try {
-    server = await app({ logger: true, pluginTimeout: 20000 })
+    server = await ModernSaas({ logger: true, pluginTimeout: 20000 })
 
     await server.listen(port, host)
 
@@ -20,3 +20,9 @@ const startServer = async () => {
 }
 
 startServer()
+
+//if (process.env.NODE_EV === 'production') {
+// startServer()
+//}
+
+//export const START_THE_ROCKET_SHIP = ModernSaas({ logger: true, pluginTimeout: 20000 })
