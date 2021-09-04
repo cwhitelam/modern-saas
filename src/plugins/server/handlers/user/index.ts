@@ -9,7 +9,9 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
   })
 
   app.post('/', (request: any, reply: any) => {
-    reply.send({ route: 'Create User' })
+    global.io.of(request.user.org).emit('user:create', { route: 'Create User' })
+    reply.status(201).send()
   })
   next()
 }
+

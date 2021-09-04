@@ -6,9 +6,15 @@ import { ChevronDown } from '@geist-ui/react-icons'
 import { useState } from 'react'
 import { CALLBACK_URL } from '../utils/constants'
 import { useRouter } from 'next/router'
+import { useSocket, useEvent } from '../hooks/socket'
 
 export default function Admin({ users, session }) {
   const router = useRouter()
+  const socket = useSocket()
+  useEvent('pong', (users) => {
+    console.log(users)
+  })
+
   return (
     <div>
       <div className="flex">
@@ -67,6 +73,9 @@ export default function Admin({ users, session }) {
               </Table>
             </Card>
           </div>
+          <Button onClick={() => socket.emit('ping', users)} shadow>
+            PING
+          </Button>
         </div>
       </div>
     </div>
@@ -92,3 +101,4 @@ export async function getServerSideProps(context) {
     props: { session, users }
   }
 }
+

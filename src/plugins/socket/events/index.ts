@@ -13,5 +13,8 @@ export default function (app: FastifyInstance, io: Server) {
 
     console.log(`${socket.ip} connected from somewhere`)
     // Setup some event modules...
+    socket.on('ping', (data: any) => {
+      socket.emit('pong', data)
+    })
   })
 }
