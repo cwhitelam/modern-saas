@@ -148,6 +148,7 @@ export default function Admin({ users, session }) {
           <div className="p-4">
             <Card type="violet" shadow className="bg-red-500 border-black border h-48">
               <h4>Welcome, {session.user.name}</h4>
+              <div>roles: {JSON.stringify(session.user.roles)}</div>
             </Card>
           </div>
         </div>

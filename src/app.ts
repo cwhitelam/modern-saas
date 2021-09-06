@@ -5,7 +5,7 @@ import { HttpErrors } from 'fastify-sensible/lib/httpError'
 import { OpenAPIV3 } from 'openapi-types'
 import next from './plugins/next'
 import prisma from './plugins/prisma'
-import app from './plugins/app'
+import api from './plugins/api'
 import admin from './plugins/admin'
 
 declare module 'fastify' {
@@ -23,23 +23,23 @@ declare module 'fastify' {
   interface FastifyReply extends HttpErrorReplys {}
 }
 
-export default async function ModernSaas(options: FastifyServerOptions): Promise<FastifyInstance> {
-  const modernSaas = Fastify(options)
+export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {
+  const app = Fastify(options)
 
   // Common dependencies
-  modernSaas.register(require('fastify-sensible'))
+  app.register(require('fastify-sensible'))
 
   // Encapsulate nextjs SSR implementation
-  modernSaas.register(next)
+  app.register(next)
 
-  // Encapsulate backend app implementation
-  modernSaas.register(app)
+  // Encapsulate backend api implementation
+  app.register(api)
 
-  // Encapsulate backend admin implementation
-  modernSaas.register(admin)
+  // Encapsulate backend admin api implementation
+  app.register(admin)
 
   // Encapsulate orm / db implementation
-  modernSaas.register(prisma)
+  app.register(prisma)
 
-  return modernSaas
+  return app
 }
