@@ -1,6 +1,6 @@
 import { FastifyError, FastifyInstance, FastifyPluginOptions, FastifyRequest } from 'fastify'
 import { FastifyReply } from 'fastify/types/reply'
-import { randomId } from '../../app/utils'
+import { randomId } from '../../api/utils'
 import user from './user'
 
 export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
