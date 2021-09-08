@@ -4,3 +4,5 @@ TODO.md
 /__tempdata__
 yarn-error.log
 .env
+/public/sw*
+/public/workbox*

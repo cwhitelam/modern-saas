@@ -20,5 +20,6 @@ export default function (app: FastifyInstance, opts: any, next: () => void) {
       app.next('/api/auth/signin/google', { method: 'POST', schema: {} })
       app.next('/api/auth/signout', { method: 'POST', schema: {} })
     })
+
   next()
 }

@@ -2,6 +2,7 @@ import { isProduction } from '@utils/constants'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 import { FastifyCookieOptions } from 'fastify-cookie'
 import handlers from './handlers'
+import services from './services'
 
 export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {
   app.register(require('fastify-swagger'), {
@@ -12,6 +13,10 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
         title: 'Modern SaaS app api'
       }
     }
+  })
+
+  app.decorate('services', {
+    ...services
   })
 
   app.register(handlers, { prefix: '/api' })

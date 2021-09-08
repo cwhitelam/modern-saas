@@ -7,6 +7,7 @@ import next from './plugins/next'
 import prisma from './plugins/prisma'
 import api from './plugins/api'
 import admin from './plugins/admin'
+import { IServices } from './plugins/api/services'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -16,11 +17,14 @@ declare module 'fastify' {
       style: string[]
     }
     httpErrors: HttpErrors
+    services: IServices
   }
   interface FastifyRequest {
     user: any
   }
-  interface FastifyReply extends HttpErrorReplys {}
+  interface FastifyReply extends HttpErrorReplys {
+    sendFile(filename: string, rootPath?: string): FastifyReply
+  }
 }
 
 export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {
