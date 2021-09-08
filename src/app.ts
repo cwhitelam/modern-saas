@@ -20,7 +20,9 @@ declare module 'fastify' {
   interface FastifyRequest {
     user: any
   }
-  interface FastifyReply extends HttpErrorReplys {}
+  interface FastifyReply extends HttpErrorReplys {
+    sendFile(filename: string, rootPath?: string): FastifyReply
+  }
 }
 
 export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {

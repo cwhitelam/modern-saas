@@ -1,0 +1,39 @@
+{
+  "name": "Modern SaaS",
+  "version": "1",
+  "manifest_version": 2,
+  "short_name": "ModernSaaS",
+  "theme_color": "#333333",
+  "background_color": "#004740",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/favicon-16x16.png",
+      "sizes": "16x16",
+      "purpose": "any maskable",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "purpose": "any maskable",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "purpose": "any maskable",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "purpose": "any maskable",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
+}
