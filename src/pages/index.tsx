@@ -3,6 +3,7 @@ import { getSession, signOut, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Zap } from '@geist-ui/react-icons'
 import { CALLBACK_URL, USER_ROLES, ADMIN_PAGE } from '@utils/constants'
+import { UserType } from '../plugins/prisma/utils'
 
 export default function IndexPage(props) {
   const router = useRouter()
@@ -35,7 +36,7 @@ export default function IndexPage(props) {
               <div className="flex items-center justify-center">
                 <ButtonGroup type="secondary-light">
                   <Button disabled>Customer</Button>
-                  {session.user.roles.includes(USER_ROLES.ADMIN) && (
+                  {session.user.type === UserType['ADMIN'] && (
                     <Button onClick={() => router.push(ADMIN_PAGE)}>Admin</Button>
                   )}
                 </ButtonGroup>

@@ -1,12 +1,13 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, User } from '@prisma/client'
 import Adapters from 'next-auth/adapters'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { UserType } from '../../../plugins/prisma/utils'
 
 declare module 'next-auth' {
   interface User {
-    roles: string[]
+    type: UserType
   }
 
   interface Session {
@@ -31,8 +32,8 @@ export default NextAuth({
       // fetch user roles
       return true
     },
-    async session(session, user) {
-      session.user.roles = ['ADMIN']
+    async session(session, user: User) {
+      session.user.type = UserType[user.type]
       return session
     },
     async jwt(token, user, account, profile, isNewUser) {
