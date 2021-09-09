@@ -7,7 +7,7 @@ import { UserType } from '../../../plugins/prisma/utils'
 
 declare module 'next-auth' {
   interface User {
-    type: UserType
+    type: any
   }
 
   interface Session {
@@ -32,7 +32,7 @@ export default NextAuth({
       // fetch user roles
       return true
     },
-    async session(session, user: User) {
+    async session(session, user: any) {
       session.user.type = UserType[user.type]
       return session
     },
