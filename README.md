@@ -11,7 +11,7 @@ Pull down the `develop` branch and create a `.env` file. Ensure all variables ar
 2. yarn dev
 ```
 
-Running yarn will install the dependencies as well as run a post-install script that will build the next application and generate the most up-to-date prisma schema.
+Running `yarn` will install the dependencies as well as run a post-install script that will build the next application and generate the most up-to-date prisma schema.
 
 ## Technologies
 
