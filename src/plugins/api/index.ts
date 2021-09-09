@@ -1,6 +1,5 @@
 import { isProduction } from '@utils/constants'
 import { FastifyInstance, FastifyPluginOptions } from 'fastify'
-import { FastifyCookieOptions } from 'fastify-cookie'
 import handlers from './handlers'
 import services from './services'
 

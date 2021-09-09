@@ -20,9 +20,3 @@ const startServer = async () => {
 }
 
 startServer()
-
-//if (process.env.NODE_EV === 'production') {
-// startServer()
-//}
-
-//export const START_THE_ROCKET_SHIP = app({ logger: true, pluginTimeout: 20000 })
