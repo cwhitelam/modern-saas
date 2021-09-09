@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, User } from '@prisma/client'
 import Adapters from 'next-auth/adapters'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { UserType } from '../../../plugins/prisma/utils'
