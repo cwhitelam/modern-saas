@@ -2,7 +2,7 @@ import { Avatar, Button, ButtonGroup, Card } from '@geist-ui/react'
 import { getSession, signOut, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Zap } from '@geist-ui/react-icons'
-import { CALLBACK_URL, USER_ROLES, ADMIN_PAGE } from '@utils/constants'
+import { CALLBACK_URL, ADMIN_PAGE } from '@utils/constants'
 import { UserType } from '../plugins/prisma/utils'
 
 export default function IndexPage(props) {
