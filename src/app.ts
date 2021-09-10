@@ -3,11 +3,11 @@ import Fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
 import { HttpErrorReplys } from 'fastify-sensible/lib/httpError'
 import { HttpErrors } from 'fastify-sensible/lib/httpError'
 import { OpenAPIV3 } from 'openapi-types'
-import next from './plugins/next'
-import prisma from './plugins/prisma'
-import api from './plugins/api'
-import admin from './plugins/admin'
-import { IServices } from './plugins/api/services'
+import { IServices } from '@plugins/api/services'
+import next from '@plugins/next'
+import api from '@plugins/api'
+import admin from '@plugins/admin'
+import prisma from '@plugins/prisma'
 
 declare module 'fastify' {
   interface FastifyInstance {

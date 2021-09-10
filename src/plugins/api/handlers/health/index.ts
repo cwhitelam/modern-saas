@@ -1,5 +1,4 @@
-import { FastifyInstance, FastifyPluginOptions, FastifyRequest } from 'fastify'
-import { FastifyReply } from 'fastify/types/reply'
+import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from 'fastify'
 import { health } from './schema'
 
 export default function (app: FastifyInstance, opts: FastifyPluginOptions, next: () => void) {

@@ -28,8 +28,8 @@
       "@utils/*": [
         "./src/utils/*"
       ],
-      "@services/*": [
-        "./src/services/*"
+      "@plugins/*": [
+        "./src/plugins/*"
       ]
     }
   },
