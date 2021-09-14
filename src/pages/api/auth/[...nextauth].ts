@@ -7,7 +7,7 @@ import { UserType } from '@plugins/prisma/utils'
 
 declare module 'next-auth' {
   interface User {
-    type: any
+    type: UserType
     blocked: boolean
   }
 

@@ -3,6 +3,6 @@ export enum PrismaErrorCodes {
 }
 
 export enum UserType {
-  USER,
-  ADMIN
+  USER = 'USER',
+  ADMIN = 'ADMIN'
 }
