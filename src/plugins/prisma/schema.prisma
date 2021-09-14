@@ -42,6 +42,7 @@ model User {
   emailVerified DateTime?
   image         String?
   type          UserType  @default(USER)
+  blocked       Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]

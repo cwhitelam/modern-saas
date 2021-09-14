@@ -8,6 +8,7 @@ import { UserType } from '@plugins/prisma/utils'
 declare module 'next-auth' {
   interface User {
     type: any
+    blocked: boolean
   }
 
   interface Session {
@@ -27,9 +28,15 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   debug: process.env.NODE_ENV === 'production' ? false : true,
   secret: process.env.AUTH_SECRET,
+  //pages: {
+  //  error: '/'
+  // },
   callbacks: {
     async signIn(user, account, profile) {
       // fetch user roles
+      if (user.blocked) {
+        return false
+      }
       return true
     },
     async session(session, user: any) {
