@@ -8,7 +8,6 @@ import next from '@plugins/next'
 import api from '@plugins/api'
 import admin from '@plugins/admin'
 import prisma from '@plugins/prisma'
-import redirect from '@plugins/redirect'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -30,9 +29,6 @@ declare module 'fastify' {
 
 export default async function app(options: FastifyServerOptions): Promise<FastifyInstance> {
   const app = Fastify(options)
-
-  // HTTP to HTTPS redirector
-  app.register(redirect)
 
   // Common dependencies
   app.register(require('fastify-sensible'))
