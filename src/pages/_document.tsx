@@ -19,7 +19,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="english">
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
