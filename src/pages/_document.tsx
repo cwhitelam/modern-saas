@@ -35,6 +35,7 @@ class MyDocument extends Document {
           <link href="icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
           <link href="icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
           <link href="icons/apple-icon.png" rel="apple-touch-icon" sizes="180x180" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="theme-color" content="#317EFB" />
         </Head>
         <body>
