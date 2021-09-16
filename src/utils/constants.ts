@@ -5,3 +5,4 @@ export const SERVICE_URL = isProduction ? process.env.DEPLOYED_URL : process.env
 
 // Route constants
 export const ADMIN_PAGE = '/admin'
+export const DASHBOARD_PAGE = '/dashboard'

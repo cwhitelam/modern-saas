@@ -2,7 +2,7 @@ import { Avatar, Button, ButtonGroup, Card } from '@geist-ui/react'
 import { getSession, signOut, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { Zap } from '@geist-ui/react-icons'
-import { CALLBACK_URL, ADMIN_PAGE } from '@utils/constants'
+import { CALLBACK_URL, ADMIN_PAGE, DASHBOARD_PAGE } from '@utils/constants'
 import { UserType } from '@plugins/prisma/utils'
 
 export default function IndexPage(props) {
@@ -35,7 +35,7 @@ export default function IndexPage(props) {
               </div>
               <div className="flex items-center justify-center">
                 <ButtonGroup type="secondary-light">
-                  <Button disabled>Customer</Button>
+                  <Button onClick={() => router.push(DASHBOARD_PAGE)}>Dashboard</Button>
                   {session.user.type === UserType['ADMIN'] && (
                     <Button onClick={() => router.push(ADMIN_PAGE)}>Admin</Button>
                   )}
