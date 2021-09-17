@@ -24,10 +24,10 @@ import {
   LogOut
 } from '@geist-ui/react-icons'
 import { useEffect, useState } from 'react'
-import { CALLBACK_URL } from '../utils/constants'
 import { useRouter } from 'next/router'
+import { CALLBACK_URL } from '@utils/constants'
 
-function AdminSideNav({ collapsed }) {
+function DashboardSideNav({ collapsed }) {
   const sideLinks = [
     {
       id: 1,
@@ -74,7 +74,7 @@ function AdminSideNav({ collapsed }) {
   )
 }
 
-function AdminTopNav({ session, toggleSideNav, collapsed }) {
+function DashboardTopNav({ session, toggleSideNav, collapsed }) {
   const router = useRouter()
   return (
     <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -129,17 +129,17 @@ function AdminTopNav({ session, toggleSideNav, collapsed }) {
   )
 }
 
-export default function Admin({ users, session }) {
+export default function Dashboard({ users, session }) {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
 
   return (
     <div>
       <div className="flex">
-        <AdminSideNav collapsed={collapsed} />
+        <DashboardSideNav collapsed={collapsed} />
         <div className="flex-col w-full">
           <div>
-            <AdminTopNav
+            <DashboardTopNav
               session={session}
               collapsed={collapsed}
               toggleSideNav={(val: boolean) => setCollapsed(val)}
@@ -148,7 +148,7 @@ export default function Admin({ users, session }) {
           <div className="p-4">
             <Card type="violet" shadow className="bg-red-500 border-black border h-48">
               <h4>Welcome, {session.user.name}</h4>
-              <div>Lets get busy!</div>
+              <div>This is the dashboard.</div>
             </Card>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function Admin({ users, session }) {
 export async function getServerSideProps(context) {
   const session = await getSession(context)
 
-  if (!session) {
+  if (!session || session.user.blocked) {
     return {
       redirect: {
         destination: '/',
@@ -169,9 +169,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const { data: users } = await internalFetcher('get', '/api/admin/user')
-
   return {
-    props: { session, users }
+    props: { session }
   }
 }
