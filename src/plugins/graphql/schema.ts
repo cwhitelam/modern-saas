@@ -9,7 +9,6 @@ const Query = objectType({
     t.nonNull.list.nonNull.field('allUsers', {
       type: 'User',
       resolve: async (_parent, args, context, info) => {
-        console.log(context.request)
         const users = await context.prisma.user.findMany()
         return users
       }
