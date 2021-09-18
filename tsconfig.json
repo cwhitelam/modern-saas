@@ -33,7 +33,6 @@
       ]
     }
   },
-  "typeRoots" : ["./src/plugins/graphql/generated/**/*"],
   "include": [
     "src/**/*.ts",
     "next-env.d.ts",

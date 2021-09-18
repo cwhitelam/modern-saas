@@ -1,6 +1,5 @@
 import { FastifyInstance } from 'fastify'
 import { makeSchema, objectType } from 'nexus'
-import { Account, User } from 'nexus-prisma'
 import { Context } from './'
 
 const Query = objectType({
@@ -17,22 +16,27 @@ const Query = objectType({
 })
 
 const UserType = objectType({
-  name: User.$name,
+  name: 'User',
   definition(t) {
-    t.field(User.id)
-    t.field(User.name)
-    t.field(User.email)
-    t.field(User.blocked)
-    t.field(User.accounts)
+    t.string('id')
+    t.string('name')
+    t.string('email')
+    t.boolean('blocked')
+    t.list.field('accounts', {
+      type: AccountType,
+      resolve(root, args, ctx) {
+        return ctx.prisma.account.findMany({ where: { userId: root.id } })
+      }
+    })
   }
 })
 
 const AccountType = objectType({
-  name: Account.$name,
+  name: 'Account',
   definition(t) {
-    t.field(Account.id)
-    t.field(Account.providerId)
-    t.field(Account.user)
+    t.string('id')
+    t.string('userId')
+    t.string('providerId')
   }
 })
 

@@ -29,14 +29,15 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Account: { // root type
-    id: string; // ID!
-    providerId: string; // String!
+    id?: string | null; // String
+    providerId?: string | null; // String
+    userId?: string | null; // String
   }
   Query: {};
   User: { // root type
-    blocked: boolean; // Boolean!
+    blocked?: boolean | null; // Boolean
     email?: string | null; // String
-    id: string; // ID!
+    id?: string | null; // String
     name?: string | null; // String
   }
 }
@@ -53,27 +54,27 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Account: { // field return type
-    id: string; // ID!
-    providerId: string; // String!
-    user: NexusGenRootTypes['User']; // User!
+    id: string | null; // String
+    providerId: string | null; // String
+    userId: string | null; // String
   }
   Query: { // field return type
     allUsers: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
-    accounts: NexusGenRootTypes['Account'][]; // [Account!]!
-    blocked: boolean; // Boolean!
+    accounts: Array<NexusGenRootTypes['Account'] | null> | null; // [Account]
+    blocked: boolean | null; // Boolean
     email: string | null; // String
-    id: string; // ID!
+    id: string | null; // String
     name: string | null; // String
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Account: { // field return type name
-    id: 'ID'
+    id: 'String'
     providerId: 'String'
-    user: 'User'
+    userId: 'String'
   }
   Query: { // field return type name
     allUsers: 'User'
@@ -82,7 +83,7 @@ export interface NexusGenFieldTypeNames {
     accounts: 'Account'
     blocked: 'Boolean'
     email: 'String'
-    id: 'ID'
+    id: 'String'
     name: 'String'
   }
 }
