@@ -14,11 +14,11 @@ import { useRouter } from 'next/router'
 
 interface TopNavProps {
   session: Session
-  toggleSideNav: boolean
+  toggleSideNav: (bool: boolean) => void
   collapsed: boolean
 }
 
-export default function TopNav({ session, toggleSideNav, collapsed }) {
+export default function TopNav({ session, toggleSideNav, collapsed }: TopNavProps) {
   const router = useRouter()
   return (
     <div className="flex items-center justify-between p-4 border-b border-gray-200">

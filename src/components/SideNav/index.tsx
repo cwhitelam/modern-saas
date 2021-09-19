@@ -5,7 +5,7 @@ interface SideNavProps {
   collapsed: boolean
 }
 
-export default function SideNav({ collapsed }) {
+export default function SideNav({ collapsed }: SideNavProps) {
   const sideLinks = [
     {
       id: 1,
