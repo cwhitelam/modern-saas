@@ -44,7 +44,7 @@ const AccountType = objectType({
 
 export const schema = makeSchema({
   types: [Query, UserType, AccountType],
-  shouldGenerateArtifacts: process.env.NODE_ENV === 'development',
+  shouldGenerateArtifacts: true,
   outputs: {
     schema: __dirname + '/schema.graphql',
     typegen: __dirname + '/generated/nexus.ts'

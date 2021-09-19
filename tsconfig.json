@@ -36,8 +36,7 @@
   "include": [
     "src/**/*.ts",
     "next-env.d.ts",
-    "src/**/*.tsx",
-    "node_modules/nexus-prisma/**/*.ts"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
