@@ -3,9 +3,9 @@
 
 
 type Account {
-  id: ID!
-  providerId: String!
-  user: User!
+  id: String
+  providerId: String
+  userId: String
 }
 
 type Query {
@@ -14,8 +14,8 @@ type Query {
 
 type User {
   accounts: [Account]
-  blocked: Boolean!
+  blocked: Boolean
   email: String
-  id: ID!
+  id: String
   name: String
 }
