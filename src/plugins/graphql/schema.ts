@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { makeSchema, objectType } from 'nexus'
 import { Context } from './'
+import { User, Account } from 'nexus-prisma'
 
 const Query = objectType({
   name: 'Query',
@@ -16,12 +17,13 @@ const Query = objectType({
 })
 
 const UserType = objectType({
-  name: 'User',
+  name: User.$name,
   definition(t) {
-    t.string('id')
-    t.string('name')
-    t.string('email')
-    t.boolean('blocked')
+    t.field(User.id)
+    t.field(User.name)
+    t.field(User.email)
+    t.field(User.blocked)
+    t.field(User.accounts)
     t.list.field('accounts', {
       type: AccountType,
       resolve(root, args, ctx) {
@@ -32,16 +34,17 @@ const UserType = objectType({
 })
 
 const AccountType = objectType({
-  name: 'Account',
+  name: Account.$name,
   definition(t) {
-    t.string('id')
-    t.string('userId')
-    t.string('providerId')
+    t.field(Account.id)
+    t.field(Account.providerId)
+    t.field(Account.user)
   }
 })
 
 export const schema = makeSchema({
   types: [Query, UserType, AccountType],
+  shouldGenerateArtifacts: process.env.NODE_ENV === 'development',
   outputs: {
     schema: __dirname + '/schema.graphql',
     typegen: __dirname + '/generated/nexus.ts'
