@@ -23,27 +23,19 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
     }
   })
 
-  const enabled = () => {
-    if (isProduction) {
-      return {}
-    } else {
-      return {
-        path: '/altair',
-        baseURL: '/altair/'
+  if (!isProduction) {
+    app.register(require('altair-fastify-plugin'), {
+      path: '/altair/',
+      baseURL: '/altair/',
+      endpointURL: '/graphql',
+      initialSettings: {
+        theme: 'dark',
+        plugin: {
+          list: ['altair-graphql-plugin-graphql-explorer']
+        }
       }
-    }
+    })
   }
-
-  app.register(require('altair-fastify-plugin'), {
-    ...enabled(),
-    endpointURL: '/graphql',
-    initialSettings: {
-      theme: 'dark',
-      plugin: {
-        list: ['altair-graphql-plugin-graphql-explorer']
-      }
-    }
-  })
 
   next()
 }
