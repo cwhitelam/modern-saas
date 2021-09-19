@@ -2,14 +2,14 @@ import SideNav from '@components/SideNav'
 import TopNav from '@components/TopNav'
 import { Session } from 'next-auth'
 import { useRouter } from 'next/router'
-import { ReactChildren, useState } from 'react'
+import { useState } from 'react'
 
 interface LayoutProps {
   session: Session
-  children: ReactChildren
+  children: any
 }
 
-export default function Layout({ children, session }) {
+export default function Layout({ children, session }: LayoutProps) {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
 

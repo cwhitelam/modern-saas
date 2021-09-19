@@ -8,6 +8,7 @@ import next from '@plugins/next'
 import api from '@plugins/api'
 import admin from '@plugins/admin'
 import prisma from '@plugins/prisma'
+import graphql from '@plugins/graphql'
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -41,6 +42,9 @@ export default async function app(options: FastifyServerOptions): Promise<Fastif
 
   // Encapsulate backend admin api implementation
   app.register(admin)
+
+  // Encapsulate nextjs SSR implementation
+  app.register(graphql)
 
   // Encapsulate orm / db implementation
   app.register(prisma)
