@@ -17,7 +17,6 @@ export default function (app: FastifyInstance, opts: FastifyPluginOptions, next:
     context: (request: FastifyRequest, reply: FastifyReply): Context => {
       return {
         prisma: app.prisma,
-        // Add services to this context
         request,
         reply
       }
