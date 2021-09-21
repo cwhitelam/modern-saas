@@ -20,7 +20,7 @@
     "prisma:pull": "prisma db pull --schema=./src/plugins/prisma/schema.prisma",
     "prisma:introspect": "prisma introspect --schema=./src/plugins/prisma/schema.prisma",
     "prisma:format": "prisma format --schema=./src/plugins/prisma/schema.prisma",
-    "postinstall": "next build && yarn generate"
+    "postinstall": "yarn generate && next build"
   },
   "keywords": [],
   "license": "ISC",
@@ -48,7 +48,7 @@
     "next-auth": "^3.29.0",
     "next-pwa": "^5.3.1",
     "nexus": "^1.1.0",
-    "nexus-prisma": "^0.33.0",
+    "nexus-prisma": "^0.34.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "swr": "^0.5.6",
