@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
+      - run: yarn generate 
   deploy:
     needs: build
     runs-on: ubuntu-latest
